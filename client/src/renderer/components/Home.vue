@@ -5,16 +5,36 @@
       </div>
 
       <div class="right-side">
+        <p class="error" v-if="error">
+          {{error}}
+        </p>
+        <div v-for="(post, index) in dividends"
+        v-bind:key="index">
+          post
+        </div>
       </div>
     </main>
   </div>
 </template>
 
 <script>
+import DividendService from "../DividendService";
+
 export default {
   name: "home",
   components: {},
-  methods: {}
+  methods: {},
+  data() {
+    dividends: [],
+    error = ''
+  },
+  async created() {
+    try {
+      this.dividends = await DividendService.getDividends();
+    } catch (err) {
+      this.error = err.msg;
+    }
+  }
 };
 </script>
 
