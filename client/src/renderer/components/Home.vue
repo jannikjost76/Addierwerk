@@ -8,9 +8,8 @@
         <p class="error" v-if="error">
           {{error}}
         </p>
-        <div v-for="(post, index) in dividends"
-        v-bind:key="index">
-          post
+        <div>
+          {{allDividends}}
         </div>
       </div>
     </main>
@@ -18,19 +17,21 @@
 </template>
 
 <script>
-import DividendService from "../DividendService";
+import DividendService from "../../DividendService.js";
 
 export default {
   name: "home",
   components: {},
   methods: {},
   data() {
-    dividends: [],
-    error = ''
+    return {
+      allDividends: 0,
+      error: ""
+    };
   },
   async created() {
     try {
-      this.dividends = await DividendService.getDividends();
+      this.allDividends = await DividendService.getDividendSum();
     } catch (err) {
       this.error = err.msg;
     }

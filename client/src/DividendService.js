@@ -15,6 +15,18 @@ class DividendService {
         })
     }
 
+    static getDividendSum(){
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await axios.get(url.concat('/allDividends'));
+                const data = res.data;
+                resolve(data);
+            } catch (err) {
+                reject(err);
+            }
+        })
+    }
+
     static updateDatabase() {
 
     }
