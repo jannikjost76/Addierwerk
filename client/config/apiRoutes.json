@@ -1,0 +1,4 @@
+{
+    "all": "http://localhost:5000/api/dividends/all",
+    "allDividends": "http://localhost:5000/api/dividends/allDividends"
+}

@@ -2,10 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dividends = require('./api/dividends/dividends.js');
+const cors = require('cors');
 
 const mongiURI = 'mongodb://localhost:27017/addierwerk';
 
 const app = express();
+app.use(cors());
 
 app.use(bodyParser.json());
 mongoose
@@ -14,6 +16,7 @@ mongoose
   .catch(err => console.log(err));
 
 app.use('/api/dividends', dividends);
+
 
 const port = process.env.PORT || 5000;
 
